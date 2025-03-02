@@ -1,3 +1,5 @@
+"use client";
+
 import { redirect } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AnalyticsPanel from "@/components/admin/AdminPanel";

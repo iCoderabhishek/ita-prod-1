@@ -1,10 +1,12 @@
 "use client";
+import { useMediaQuery } from "react-responsive";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserButton, useAuth } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 import { School } from "lucide-react";
+import MobileNavbar from "./MobileNavbar";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -22,13 +24,19 @@ export default function Navbar() {
   const pathname = usePathname();
   const { isSignedIn } = useAuth();
 
+  const isMobile = useMediaQuery({ maxWidth: 768 }); // Example breakpoint
+
+  if (isMobile) {
+    return <MobileNavbar />;
+  }
+
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className=" sticky top-0 z-50 max-w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <School className="h-6 w-6 text-[#318CE7]" />
-            <span className="hidden font-bold sm:inline-block">
+            <span className="  hidden font-bold sm:inline-block">
               Itahar Government Polytechnic
             </span>
           </Link>

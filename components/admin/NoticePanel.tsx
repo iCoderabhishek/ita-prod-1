@@ -219,9 +219,9 @@ export default function NoticesPanel() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Manage Notices</h2>
+    <div className="space-y-6 sm: m-5 ">
+      <div className="flex justify-between items-center ">
+        <h2 className="text-2xl font-bold ">Manage Notices</h2>
         <Button
           onClick={handleAddNew}
           className="bg-[#318CE7] hover:bg-[#318CE7]/90"

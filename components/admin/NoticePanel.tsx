@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -87,29 +87,8 @@ export default function NoticesPanel() {
     },
   });
 
-  useEffect(() => {
-    fetchNotices();
-  }, []);
-
-  useEffect(() => {
-    if (editingNotice) {
-      form.reset({
-        title: editingNotice.title,
-        description: editingNotice.description,
-        label: editingNotice.label,
-        fileLink: editingNotice.fileLink || "",
-      });
-    } else {
-      form.reset({
-        title: "",
-        description: "",
-        label: "",
-        fileLink: "",
-      });
-    }
-  }, [editingNotice, form]);
-
-  const fetchNotices = async () => {
+  const fetchNotices = useCallback(async () => {
+    // Use useCallback
     try {
       setIsLoading(true);
       const response = await fetch("/api/notices");
@@ -129,7 +108,29 @@ export default function NoticesPanel() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [setNotices, setIsLoading, toast]); // Add dependencies if needed
+
+  useEffect(() => {
+    fetchNotices();
+  }, [fetchNotices]); // Added fetchNotices to the dependency array
+
+  useEffect(() => {
+    if (editingNotice) {
+      form.reset({
+        title: editingNotice.title,
+        description: editingNotice.description,
+        label: editingNotice.label,
+        fileLink: editingNotice.fileLink || "",
+      });
+    } else {
+      form.reset({
+        title: "",
+        description: "",
+        label: "",
+        fileLink: "",
+      });
+    }
+  }, [editingNotice, form]);
 
   const onSubmit = async (values: NoticeFormValues) => {
     try {

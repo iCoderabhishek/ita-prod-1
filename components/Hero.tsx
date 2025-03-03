@@ -4,16 +4,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
-import { format } from "date-fns";
 
-import { usePathname } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { useState } from "react";
-import { db } from "@/lib/db";
 
 export default function Hero() {
   const emptyNotice = useState([]);
-  const pathname = usePathname();
   const { isSignedIn } = useAuth();
 
   return (

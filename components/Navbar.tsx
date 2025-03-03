@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SignIn, UserButton, useAuth } from "@clerk/nextjs";
+import { UserButton, useAuth } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 import { School } from "lucide-react";
-import { Button } from "./ui/button";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -65,7 +64,7 @@ export default function Navbar() {
                   : "text-foreground"
               )}
             >
-              Sign in
+              Admin Login
             </Link>
           )}
 

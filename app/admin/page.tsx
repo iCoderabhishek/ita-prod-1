@@ -15,9 +15,9 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Navbar />
-      <div className="container py-12 sm: m-5 ">
+      <div className="container py-12 sm: m-5  ">
         <h1 className="text-4xl font-bold mb-8">Admin Dashboard</h1>
 
         <Tabs defaultValue="analytics" className="w-full">
